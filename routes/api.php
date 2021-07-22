@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController as User;
+use App\Http\Controllers\Api\CategoryController as Category;
+use App\Http\Controllers\Api\PostController as Post;
+use App\Http\Controllers\Api\TagController as Tag;
 use App\Http\Controllers\Api\RecuperarPasswordController as RecuperarPassword;
 use App\Http\Controllers\Api\JWTController as JWT;
 
@@ -36,6 +39,9 @@ Route::post('profile/change-password', [User::class, 'changePassword']);
 
 Route::resource('user', User::class);
 Route::post('user-modificar-imagen', [User::class, 'actualizarImagen']);
+Route::resource('category', Category::class);
+Route::resource('tag', Tag::class);
+Route::resource('post', Post::class);
 /* Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 }); */
