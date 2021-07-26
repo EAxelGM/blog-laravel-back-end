@@ -2,18 +2,19 @@
 
 namespace Database\Factories;
 
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-class UserFactory extends Factory
+class TagFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = Tag::class;
 
     /**
      * Define the model's default state.
@@ -22,12 +23,13 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $name = $this->faker->realText(50, 5);
+        $slug = Str::slug($name);
         return [
-            'name' => $this->faker->name(),
-            'lastname' => $this->faker->lastName(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'password' => bcrypt('password'),
-            'image' => 'https://picsum.photos/600',
+            'name' => $name,
+            'slug' => $slug,
+            'user_id' => User::all()->random()->_id,
+            'activo' => $this->faker->randomElements([1,0]),
         ];
     }
 }

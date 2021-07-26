@@ -16,13 +16,18 @@ class TagController extends Controller
     
     public function store(Request $request)
     {
+        $slug = $this->TextToSlug($request->name);
+        if(Tag::where('slug', $slug)->first()){
+            return $this->errorResponse('Esta etiqueta ya existe', 401);
+        }
         $tag = Tag::create([
             'name' => $request->name,
+            'slug' => $slug,
             'user_id' => $request->user_id,
             'activo' => 1,
         ]);
 
-        return $this->successResponse($tags);
+        return $this->successResponse($tag, 'Etiqueta creada');
     }
 
     public function destroy($id)

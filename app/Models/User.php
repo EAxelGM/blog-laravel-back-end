@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-/* use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+/* use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -21,7 +21,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject as JWT;
 
 
 class User extends Eloquent implements Authenticatable, JWT{
-    use AuthenticableTrait;
+    use AuthenticableTrait, HasFactory;
     /**
      * The attributes that are mass assignable.
      *
